@@ -54,7 +54,7 @@ if (TL_MODE != 'BE') {
         <div class="dc-iframe-container">
 
 
-                <iframe src="<?= $this->dc_playcanvas_settings; ?>" width="900" height="400" name="SELFHTML_in_a_box">
+                <iframe src="<?= $this->dc_playcanvas_settings; ?>" width="900" height="400" name="SELFHTML_in_a_box" allow="fullscreen">
                     <p>Ihr Browser kann leider keine eingebetteten Frames anzeigen:
                         Sie können die eingebettete Seite über den folgenden Verweis aufrufen:
                         <a href="<?= $this->dc_playcanvas_settings; ?>">Play Canvas</a>
