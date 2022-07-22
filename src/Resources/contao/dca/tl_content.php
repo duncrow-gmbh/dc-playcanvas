@@ -16,6 +16,28 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dc_playcanvas_settings'] = array
     'eval' => array('mandatory'=>false, 'rgxp'=>'url','decodeEntities'=>true, 'maxlength'=>2048, 'dcaPicker'=>true),
     'sql' => "text NULL"
 );
+$GLOBALS['TL_DCA']['tl_content']['fields']['dc_playcanvas_fullscreen'] = array
+(
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'sql' => "text NULL",
+    'eval' => array('tl_class'=>'w50'),
+);
+$GLOBALS['TL_DCA']['tl_content']['fields']['dc_playcanvas_hide_play_canvas_bar'] = array
+(
+    'exclude' => true,
+    'inputType' => 'checkbox',
+    'sql' => "text NULL",
+    'eval' => array('tl_class'=>'w50'),
+);
+$GLOBALS['TL_DCA']['tl_content']['fields']['dc_playcanvas_menu_height'] = array
+(
+    'exclude' => true,
+    'search' => true,
+    'inputType' => 'text',
+    'sql' => "varchar(255) NOT NULL default ''",
+    'eval' => array('maxlength'=>255,'tl_class'=>'w50'),
+);
 $GLOBALS['TL_DCA']['tl_content']['fields']['dc_playcanvas_settings_files'] = array
 (
     'exclude'                 => true,
@@ -25,9 +47,13 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['dc_playcanvas_settings_files'] = arr
 );
 
 PaletteManipulator::create()
+
     ->addLegend('dc_playcanvas_legend', 'type_legend', PaletteManipulator::POSITION_AFTER)
-    ->addField('dc_playcanvas_settings', 'dc_playcanvas_legend', PaletteManipulator::POSITION_APPEND)
     ->addField('dc_playcanvas_settings_files', 'dc_playcanvas_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('dc_playcanvas_settings', 'dc_playcanvas_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('dc_playcanvas_fullscreen', 'dc_playcanvas_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('dc_playcanvas_menu_height', 'dc_playcanvas_legend', PaletteManipulator::POSITION_APPEND)
+    ->addField('dc_playcanvas_hide_play_canvas_bar', 'dc_playcanvas_legend', PaletteManipulator::POSITION_APPEND)
     ->applyToPalette('playcanvas_content_element', 'tl_content');
 
 $GLOBALS['TL_DCA']['tl_content']['palettes']['__selector__'][] = ' dc_playcanvas_settings, dc_playcanvas_settings_files';

@@ -27,12 +27,16 @@ if (TL_MODE != 'BE') {
         .dc-play-canvas-container-<?= $this->id; ?>{
             width:100%;
             position:relative;
+            height:0;
+            padding-top:60%;
         }
         .dc-play-canvas-container-<?= $this->id; ?> .dc-iframe-container{
-            position:relative;
+            position:absolute;
             width:100%;
-            height: 0;
-            padding-top:60%;
+            height: 100%;
+            top:0;
+            left:0;
+            overflow: hidden;
 
         }
         .dc-play-canvas-container-<?= $this->id; ?> .dc-iframe-container iframe{
@@ -44,9 +48,36 @@ if (TL_MODE != 'BE') {
             border: none;
             margin: 0;
             padding: 0;
+            overflow: hidden;
+            <?php if($this->dc_playcanvas_hide_play_canvas_bar){ ?>
+            height: calc(100% + 50px);
+            <?php  } ?>
+        }
+        <?php if($this->dc_playcanvas_fullscreen){ ?>
+        .dc-play-canvas-container-<?= $this->id; ?>{
+            padding:0;
+        <?php if($this->dc_playcanvas_menu_height){ ?>
+            height: calc(100vh - <?=$this->dc_playcanvas_menu_height; ?>px);
+        <?php  }else { ?>
+            height: 100vh;
+        <?php  } ?>
+        }
+        <?php  } ?>
+
+        @media screen and (max-width: 768px) {
+            .dc-play-canvas-container-<?= $this->id; ?> {
+                padding-top:150%;
+                height: 0;
+            }
+
+        <?php if($this->dc_playcanvas_hide_play_canvas_bar){ ?>
+            .dc-play-canvas-container-<?= $this->id; ?> .dc-iframe-container iframe {
+                height: 100%;
+            }
+        <?php  } ?>
         }
     </style>
-    <div class="dc-play-canvas-container-<?= $this->id; ?>">
+    <div class="dc-play-canvas-container-<?= $this->id; ?> <?php if($this->dc_playcanvas_fullscreen){echo 'dc-fullscreen'; } ?> ">
     <<?= $this->hl; ?>><?php
         $headline = deserialize($this->headline,true);
         echo $headline['value'];
