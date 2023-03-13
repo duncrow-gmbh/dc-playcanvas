@@ -81,8 +81,8 @@ if (TL_MODE != 'BE') {
     </style>
 
 <div class="dc-play-canvas-container-<?= $this->id; ?><?php if ($this->dc_playcanvas_fullscreen): ?> dc-fullscreen<?php endif; ?>">
-    <?php if($this->headline): ?>
-        <?php $headline = deserialize($this->headline, true); ?>
+    <?php $headline = deserialize($this->headline, true); ?>
+    <?php if($headline['value']): ?>
         <<?= $this->hl; ?>><?= $headline['value'] ?></<?= $this->hl; ?>>
     <?php endif; ?>
 
